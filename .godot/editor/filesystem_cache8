@@ -1,0 +1,6 @@
+ea4bc82a6ad023ab7ee23ee620429895
+::res://::1746456686
+game.tscn::PackedScene::8437260456088006277::1746455753::0::1::::<><>::
+icon.svg::CompressedTexture2D::1158049559830517717::1746450174::1746450180::1::::<><>::
+main_menu.gd::GDScript::-1::1746455753::0::1::::<>Control<>::
+main_menu.tscn::PackedScene::3425508945807997987::1746455513::0::1::::<><>::res://main_menu.gd

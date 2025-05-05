@@ -1,0 +1,79 @@
+[gd_scene load_steps=2 format=3 uid="uid://bo2lvqo2ccuu2"]
+
+[ext_resource type="Script" path="res://main_menu.gd" id="1_i3sp4"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_i3sp4")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 80
+
+[node name="title_container" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="title" type="Label" parent="MarginContainer/VBoxContainer/title_container"]
+layout_mode = 2
+text = "Title Here"
+horizontal_alignment = 1
+
+[node name="button_container" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 25
+alignment = 1
+
+[node name="button_continue" type="Button" parent="MarginContainer/VBoxContainer/button_container"]
+layout_mode = 2
+text = "cont"
+
+[node name="button_play" type="Button" parent="MarginContainer/VBoxContainer/button_container"]
+layout_mode = 2
+text = "play"
+
+[node name="button_settings" type="Button" parent="MarginContainer/VBoxContainer/button_container"]
+layout_mode = 2
+text = "settings"
+
+[node name="button_extras" type="Button" parent="MarginContainer/VBoxContainer/button_container"]
+layout_mode = 2
+text = "delete saved data"
+
+[node name="button_exit" type="Button" parent="MarginContainer/VBoxContainer/button_container"]
+layout_mode = 2
+text = "exit"
+
+[node name="footnotes" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="version" type="Label" parent="MarginContainer/VBoxContainer/footnotes"]
+layout_mode = 2
+size_flags_vertical = 8
+text = "Version info"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/button_container/button_continue" to="." method="_on_button_continue_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/button_container/button_play" to="." method="_on_button_play_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/button_container/button_extras" to="." method="_on_button_extras_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/button_container/button_exit" to="." method="_on_button_exit_pressed"]

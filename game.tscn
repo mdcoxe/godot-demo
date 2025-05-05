@@ -1,0 +1,165 @@
+[gd_scene load_steps=3 format=3 uid="uid://dshcpg0nasn78"]
+
+[ext_resource type="Script" path="res://game.gd" id="1_47eyn"]
+
+[sub_resource type="Theme" id="Theme_ai7hp"]
+
+[node name="Game" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_47eyn")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="top_half" type="PanelContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="vboxcontainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/top_half"]
+layout_mode = 2
+
+[node name="header_container" type="PanelContainer" parent="MarginContainer/VBoxContainer/top_half/vboxcontainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/top_half/vboxcontainer/header_container"]
+layout_mode = 2
+
+[node name="button_cont_margin2" type="MarginContainer" parent="MarginContainer/VBoxContainer/top_half/vboxcontainer/header_container/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="button_eod" type="Button" parent="MarginContainer/VBoxContainer/top_half/vboxcontainer/header_container/HBoxContainer/button_cont_margin2"]
+layout_mode = 2
+theme = SubResource("Theme_ai7hp")
+text = "eod"
+
+[node name="title_container" type="MarginContainer" parent="MarginContainer/VBoxContainer/top_half/vboxcontainer/header_container/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/top_half/vboxcontainer/header_container/HBoxContainer/title_container"]
+layout_mode = 2
+text = "Title Text here"
+horizontal_alignment = 1
+
+[node name="button_cont_margin" type="MarginContainer" parent="MarginContainer/VBoxContainer/top_half/vboxcontainer/header_container/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="button_main_menu" type="Button" parent="MarginContainer/VBoxContainer/top_half/vboxcontainer/header_container/HBoxContainer/button_cont_margin"]
+layout_mode = 2
+theme = SubResource("Theme_ai7hp")
+text = "mm"
+
+[node name="image_container" type="PanelContainer" parent="MarginContainer/VBoxContainer/top_half/vboxcontainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="stats_container" type="PanelContainer" parent="MarginContainer/VBoxContainer/top_half/vboxcontainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/top_half/vboxcontainer/stats_container"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/top_half/vboxcontainer/stats_container/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="coin" type="Label" parent="MarginContainer/VBoxContainer/top_half/vboxcontainer/stats_container/HBoxContainer/MarginContainer"]
+layout_mode = 2
+text = "4000"
+horizontal_alignment = 1
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer/top_half/vboxcontainer/stats_container/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="item_count" type="Label" parent="MarginContainer/VBoxContainer/top_half/vboxcontainer/stats_container/HBoxContainer/MarginContainer2"]
+layout_mode = 2
+text = "9/100"
+horizontal_alignment = 1
+
+[node name="MarginContainer3" type="MarginContainer" parent="MarginContainer/VBoxContainer/top_half/vboxcontainer/stats_container/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="day" type="Label" parent="MarginContainer/VBoxContainer/top_half/vboxcontainer/stats_container/HBoxContainer/MarginContainer3"]
+layout_mode = 2
+text = "time"
+horizontal_alignment = 1
+
+[node name="bottom_half" type="PanelContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/bottom_half"]
+layout_mode = 2
+
+[node name="left_container" type="VBoxContainer" parent="MarginContainer/VBoxContainer/bottom_half/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/bottom_half/HBoxContainer/left_container"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="button_scavenge" type="Button" parent="MarginContainer/VBoxContainer/bottom_half/HBoxContainer/left_container/MarginContainer"]
+layout_mode = 2
+text = "Scavenge Dungeon"
+
+[node name="right_container" type="VBoxContainer" parent="MarginContainer/VBoxContainer/bottom_half/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/bottom_half/HBoxContainer/right_container"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/top_half/vboxcontainer/header_container/HBoxContainer/button_cont_margin2/button_eod" to="." method="_on_button_eod_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/top_half/vboxcontainer/header_container/HBoxContainer/button_cont_margin/button_main_menu" to="." method="_on_button_main_menu_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/bottom_half/HBoxContainer/left_container/MarginContainer/button_scavenge" to="." method="_on_button_scavenge_pressed"]
