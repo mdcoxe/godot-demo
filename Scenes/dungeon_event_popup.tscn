@@ -1,0 +1,120 @@
+[gd_scene load_steps=2 format=3 uid="uid://2732cticxiap"]
+
+[ext_resource type="Script" uid="uid://bidhp8r8ul3an" path="res://Scripts/dungeon_event_popup.gd" id="1_3jdhw"]
+
+[node name="DungeonEventPopup" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_3jdhw")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.037289, 0, 0.782828, 0.435294)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="ColorRect/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="ColorRect/VBoxContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="main_message" type="Label" parent="ColorRect/VBoxContainer/PanelContainer/MarginContainer"]
+custom_minimum_size = Vector2(50, 200)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "main message"
+autowrap_mode = 2
+
+[node name="PanelContainer2" type="PanelContainer" parent="ColorRect/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ColorRect/VBoxContainer/PanelContainer2"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="ColorRect/VBoxContainer/PanelContainer2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="coin_total" type="Label" parent="ColorRect/VBoxContainer/PanelContainer2/HBoxContainer/MarginContainer"]
+custom_minimum_size = Vector2(0, 400)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Coins:"
+autowrap_mode = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="ColorRect/VBoxContainer/PanelContainer2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="message_label" type="Label" parent="ColorRect/VBoxContainer/PanelContainer2/HBoxContainer/MarginContainer2"]
+custom_minimum_size = Vector2(0, 400)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Message:"
+autowrap_mode = 2
+
+[node name="PanelContainer3" type="PanelContainer" parent="ColorRect/VBoxContainer"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ColorRect/VBoxContainer/PanelContainer3"]
+layout_mode = 2
+
+[node name="stay_button_container" type="MarginContainer" parent="ColorRect/VBoxContainer/PanelContainer3/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="button_stay" type="Button" parent="ColorRect/VBoxContainer/PanelContainer3/HBoxContainer/stay_button_container"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Stay"
+
+[node name="MarginContainer2" type="MarginContainer" parent="ColorRect/VBoxContainer/PanelContainer3/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="button_leave" type="Button" parent="ColorRect/VBoxContainer/PanelContainer3/HBoxContainer/MarginContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Exit"
+
+[connection signal="pressed" from="ColorRect/VBoxContainer/PanelContainer3/HBoxContainer/stay_button_container/button_stay" to="." method="_on_button_stay_pressed"]
+[connection signal="pressed" from="ColorRect/VBoxContainer/PanelContainer3/HBoxContainer/MarginContainer2/button_leave" to="." method="_on_button_leave_pressed"]

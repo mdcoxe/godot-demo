@@ -1,6 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://dshcpg0nasn78"]
+[gd_scene load_steps=5 format=3 uid="uid://dshcpg0nasn78"]
 
-[ext_resource type="Script" path="res://game.gd" id="1_47eyn"]
+[ext_resource type="Script" uid="uid://beg80ajg6ujan" path="res://Scripts/game.gd" id="1_ebmjs"]
+[ext_resource type="Texture2D" uid="uid://ct0gia20kjrkw" path="res://assets/icons/239.png" id="2_wrm1d"]
+[ext_resource type="Texture2D" uid="uid://7y8ksyjnrs62" path="res://assets/icons/function_icon_list_2.png" id="3_3dryh"]
 
 [sub_resource type="Theme" id="Theme_ai7hp"]
 
@@ -11,7 +13,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_47eyn")
+script = ExtResource("1_ebmjs")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -42,15 +44,31 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 4
-theme_override_constants/margin_left = 24
-theme_override_constants/margin_top = 24
-theme_override_constants/margin_right = 24
-theme_override_constants/margin_bottom = 24
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
 
 [node name="button_eod" type="Button" parent="MarginContainer/VBoxContainer/top_half/vboxcontainer/header_container/HBoxContainer/button_cont_margin2"]
+custom_minimum_size = Vector2(75, 75)
 layout_mode = 2
-theme = SubResource("Theme_ai7hp")
-text = "eod"
+theme_override_font_sizes/font_size = 24
+expand_icon = true
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/top_half/vboxcontainer/header_container/HBoxContainer/button_cont_margin2/button_eod"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -18.75
+offset_right = 18.75
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_wrm1d")
+expand_mode = 3
 
 [node name="title_container" type="MarginContainer" parent="MarginContainer/VBoxContainer/top_half/vboxcontainer/header_container/HBoxContainer"]
 layout_mode = 2
@@ -58,6 +76,7 @@ size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/top_half/vboxcontainer/header_container/HBoxContainer/title_container"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 24
 text = "Title Text here"
 horizontal_alignment = 1
 
@@ -65,15 +84,18 @@ horizontal_alignment = 1
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 4
-theme_override_constants/margin_left = 24
-theme_override_constants/margin_top = 24
-theme_override_constants/margin_right = 24
-theme_override_constants/margin_bottom = 24
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
 
 [node name="button_main_menu" type="Button" parent="MarginContainer/VBoxContainer/top_half/vboxcontainer/header_container/HBoxContainer/button_cont_margin"]
+custom_minimum_size = Vector2(75, 75)
 layout_mode = 2
 theme = SubResource("Theme_ai7hp")
-text = "mm"
+theme_override_font_sizes/font_size = 24
+icon = ExtResource("3_3dryh")
+expand_icon = true
 
 [node name="image_container" type="PanelContainer" parent="MarginContainer/VBoxContainer/top_half/vboxcontainer"]
 layout_mode = 2
@@ -96,6 +118,7 @@ theme_override_constants/margin_bottom = 24
 
 [node name="coin" type="Label" parent="MarginContainer/VBoxContainer/top_half/vboxcontainer/stats_container/HBoxContainer/MarginContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 24
 text = "4000"
 horizontal_alignment = 1
 
@@ -109,6 +132,7 @@ theme_override_constants/margin_bottom = 24
 
 [node name="item_count" type="Label" parent="MarginContainer/VBoxContainer/top_half/vboxcontainer/stats_container/HBoxContainer/MarginContainer2"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 24
 text = "9/100"
 horizontal_alignment = 1
 
@@ -122,6 +146,7 @@ theme_override_constants/margin_bottom = 24
 
 [node name="day" type="Label" parent="MarginContainer/VBoxContainer/top_half/vboxcontainer/stats_container/HBoxContainer/MarginContainer3"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 24
 text = "time"
 horizontal_alignment = 1
 
@@ -146,7 +171,19 @@ theme_override_constants/margin_bottom = 24
 
 [node name="button_scavenge" type="Button" parent="MarginContainer/VBoxContainer/bottom_half/HBoxContainer/left_container/MarginContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 24
 text = "Scavenge Dungeon"
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer/bottom_half/HBoxContainer/left_container"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/bottom_half/HBoxContainer/left_container/MarginContainer2"]
+layout_mode = 2
 
 [node name="right_container" type="VBoxContainer" parent="MarginContainer/VBoxContainer/bottom_half/HBoxContainer"]
 layout_mode = 2
