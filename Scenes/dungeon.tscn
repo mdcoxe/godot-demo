@@ -167,6 +167,7 @@ theme_override_constants/margin_bottom = 24
 custom_minimum_size = Vector2(0, 150)
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
+horizontal_alignment = 1
 autowrap_mode = 2
 
 [node name="SubMessage" type="MarginContainer" parent="MarginContainer/VBoxContainer/PanelContainer2/Bottom_Panel"]
@@ -181,6 +182,7 @@ theme_override_constants/margin_bottom = 24
 custom_minimum_size = Vector2(0, 150)
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
+horizontal_alignment = 1
 autowrap_mode = 2
 
 [node name="ContinueButton" type="MarginContainer" parent="MarginContainer/VBoxContainer/PanelContainer2/Bottom_Panel"]

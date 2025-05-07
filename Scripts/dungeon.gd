@@ -87,7 +87,8 @@ func generate_dungeon():
 					var pos = Vector2i(x,y)
 					tile_data[pos] = {
 							"type": "empty",
-							"revealed": false
+							"revealed": false,
+							"event_handled": false
 					}
 					positions.append(pos)
 	positions.shuffle()
@@ -186,6 +187,8 @@ func _on_tile_pressed(pos: Vector2i, btn: Button):
 		_reveal_tile(old_player_position)
 		_update_clickable_tiles()
 
+		var current_tile = tile_data[player_position]
+		
 		match tile_data[player_position].type:
 			"exit":
 				event_icon.texture = EXIT_ICON
@@ -194,83 +197,58 @@ func _on_tile_pressed(pos: Vector2i, btn: Button):
 				var message2 = ""
 				print("You're leaving the dungeon with ", coin_pouch, " coins!!")
 				_event_triggered(message, message2, 1)
-				#show_exit_popup(coin_pouch)
 			"loot":
-				event_icon.texture = LOOT_ICON
-				event_img.visible = true
-				var loot = randi_range(10,100)
-				print("Found ", loot, " coins!")
-				coin_pouch += loot
-				_update_coin_pouch_label(coin_pouch)
-				var message = "You came across a small pile of coins likely cut from a fallen raider"
-				var message2 = "You added " + str(loot) + " to your coin pouch"
-				_event_triggered(message, message2, 0)
-				#show_event_popup(message, message2, coin_pouch)
-				# Handle loot (e.g., add to inventory)
-			"trap":
-				event_icon.texture = TRAP_ICON
-				event_img.visible = true
-				var message = "You fell into a trap!  While crawling free your pack got snagged on a spike." #maybe add a damage or damage the loot
-				var message2 = ""
-				var lost_coins = 0
-				if coin_pouch >=25:
-					var lost_percentage = (randi() % 80) * .01
-					print("Lost coin: ", lost_coins)
-					lost_coins = int(coin_pouch * lost_percentage)
-					coin_pouch -= lost_coins
-					message2 = str(int(lost_coins)) + "coins fell out of your coin pouch!!  You managed to snatch the bag shut before more were lost."
+				if not current_tile.event_handled:
+					event_icon.texture = LOOT_ICON
+					event_img.visible = true
+					var loot = randi_range(10,100)
+					print("Found ", loot, " coins!")
+					coin_pouch += loot
+					_update_coin_pouch_label(coin_pouch)
+					var message = "You came across a small pile of coins likely cut from a fallen raider"
+					var message2 = "You added " + str(loot) + " to your coin pouch"
+					_event_triggered(message, message2, 0)
+					current_tile.event_handled = true
+					# Handle loot (e.g., add to inventory)
 				else:
-					message2 = "You lost your coin pouch"
-					coin_pouch = 0
-				_update_coin_pouch_label(coin_pouch)
-				_event_triggered(message, message2, 0)
-				#show_event_popup(message, message2, coin_pouch)
+					_event_triggered(" You revisit the spot, but the loot is gone.", "", 0)
+			"trap":
+				if not current_tile.event_handled:
+					event_icon.texture = TRAP_ICON
+					event_img.visible = true
+					var message = "You fell into a trap!  While crawling free your pack got snagged on a spike." #maybe add a damage or damage the loot
+					var message2 = ""
+					var lost_coins = 0
+					if coin_pouch >=25:
+						var lost_percentage = (randi() % 80) * .01
+						print("Lost coin: ", lost_coins)
+						lost_coins = int(coin_pouch * lost_percentage)
+						coin_pouch -= lost_coins
+						message2 = str(int(lost_coins)) + " coins fell out of your coin pouch!!  You managed to snatch the bag shut before more were lost."
+					else:
+						message2 = "You lost your coin pouch"
+						coin_pouch = 0
+					_update_coin_pouch_label(coin_pouch)
+					_event_triggered(message, message2, 0)
+					current_tile.event_handled = true
+
+				else:
+					_event_triggered("The trap here has already been sprung.", "", 0)
 			"enemy":
-				event_icon.texture = ENEMY_ICON
-				event_img.visible = true
-				var message = "You spot the remenants of a failed raiding parties camp,nearby looters wave knowing you're here doing the same, looting the dead."
-				var message2 = "While venturing along the edge of the camp, you spot a small chest that appears hastily buried.  You stuff it into your pack and hope the othr looters don't notice you."
-				_event_triggered(message, message2, 0)
-#				add item to pack
-				#combat isn't real combat, maybe roll to decide if you are able to steal their loot or they steal from you before you can get away from each other.
+				if not current_tile.event_handled:
+
+					event_icon.texture = ENEMY_ICON
+					event_img.visible = true
+					var message = "You spot the remenants of a failed raiding parties camp,nearby looters wave knowing you're here doing the same, looting the dead."
+					var message2 = "While venturing along the edge of the camp, you spot a small chest that appears hastily buried.  You stuff it into your pack and hope the othr looters don't notice you."
+					_event_triggered(message, message2, 0)
+	#				add item to pack
+					#combat isn't real combat, maybe roll to decide if you are able to steal their loot or they steal from you before you can get away from each other.
+					current_tile.event_handled = true
+				else:
+					_event_triggered("You pass through the cleared campsite. The looters are gone, everything has been stripped bare", "", 0)
 			_:
 				pass 
-
-
-
-#func show_event_popup(main_message: String, sub_message: String, coin: int, ):
-	#var event_popup_instance = EventPopupScene.instantiate()
-	#
-	#event_popup_instance.exit_pressed.connect(_exit_event_popup)
-	#event_popup_instance.set_popup_data(main_message, sub_message, coin, 1, "Continue Exploring")
-	#add_child(event_popup_instance)
-	#
-#func _exit_event_popup():
-	#print("Event complete")
-	#get_tree().paused = false
-
-#func show_exit_popup(coin_amount: int):
-	#var exit_popup_instance = EventPopupScene.instantiate()
-	#
-	#exit_popup_instance.continue_pressed.connect(_on_exit_popup_continue)
-	#exit_popup_instance.exit_pressed.connect(_on_exit_popup_exit)
-	#
-	#var message = "The dungeon exit is within reach. You may depart now with your accumulated spoils, or venture further into the depths at your own peril for the chance of richer rewards."
-	#print("COIN AMOUNT", + coin_amount)
-	#exit_popup_instance.set_popup_data(message, "", coin_amount, 2, "Exit Dungeon")
-	#add_child(exit_popup_instance)
-	
-#func _on_exit_popup_continue():
-	#print("Main Scene: User chose to continue exploring.")
-	#get_tree().paused = false
-
-#func _on_exit_popup_exit():
-	#print("Main Scene: User chose to exit the dungeon.")
-	#SaveManager.add_coins(coin_pouch)
-	#coin_pouch = 0
-	#_update_coin_pouch_label(coin_pouch)
-	#get_tree().paused = false
-	#get_tree().change_scene_to_file("res://Scenes/game.tscn")
 
 func _update_coin_pouch_label(coin: int):
 	coin_pouch_label.text = "Coin Pouch: " + str(coin)
