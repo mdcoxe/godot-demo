@@ -29,14 +29,12 @@ var empty_style = StyleBoxFlat.new()
 func _ready():
 	default_style.bg_color = Color(0.2, 0.2, 0.2) # Dark grey for disabled/unrevealed
 	empty_style.bg_color = Color(0.4, 0.4, 0.4)    # Lighter grey for empty visited
-
 	_create_grid()
 	generate_dungeon()
 	await get_tree().process_frame
 
 	_reveal_tile(player_position)
 	_update_clickable_tiles()
-
 
 func _reveal_tile(pos):
 	var btn = tile_buttons.get(pos)
@@ -70,7 +68,6 @@ func _reveal_tile(pos):
 	else:
 		btn.icon = null
 
-
 func _apply_button_style(btn: Button, style: StyleBox):
 	btn.add_theme_stylebox_override("normal", style)
 	btn.add_theme_stylebox_override("pressed", style)
@@ -99,10 +96,12 @@ func generate_dungeon():
 	tile_data[entrance].revealed = true
 	player_position = entrance
 	tile_data[exit].type = "exit"
+	tile_data[exit].revealed = true
+
 
 	for i in range(3): tile_data[positions.pop_front()].type = "loot"
 	for i in range(randi_range(1,2)): tile_data[positions.pop_front()].type = "trap"
-	for i in range(randi_range(1,2)): tile_data[positions.pop_front()].type = "enemy"
+	for i in range(randi_range(1,8)): tile_data[positions.pop_front()].type = "enemy"
 
 func _create_grid():
 	grid_container.columns = GRID_SIZE.x
@@ -170,8 +169,6 @@ func _update_clickable_tiles():
 			_reveal_tile(pos)
 
 func _on_tile_pressed(pos: Vector2i, btn: Button):
-	print("Tile pressed:", pos)
-
 	var valid_moves = _get_adjacent_positions(player_position)
 	if pos in valid_moves:
 		# This is a valid move
@@ -198,9 +195,9 @@ func _on_tile_pressed(pos: Vector2i, btn: Button):
 				print("You're leaving the dungeon with ", coin_pouch, " coins!!")
 				_event_triggered(message, message2, 1)
 			"loot":
+				event_icon.texture = LOOT_ICON
+				event_img.visible = true
 				if not current_tile.event_handled:
-					event_icon.texture = LOOT_ICON
-					event_img.visible = true
 					var loot = randi_range(10,100)
 					print("Found ", loot, " coins!")
 					coin_pouch += loot
@@ -213,9 +210,9 @@ func _on_tile_pressed(pos: Vector2i, btn: Button):
 				else:
 					_event_triggered(" You revisit the spot, but the loot is gone.", "", 0)
 			"trap":
+				event_icon.texture = TRAP_ICON
+				event_img.visible = true
 				if not current_tile.event_handled:
-					event_icon.texture = TRAP_ICON
-					event_img.visible = true
 					var message = "You fell into a trap!  While crawling free your pack got snagged on a spike." #maybe add a damage or damage the loot
 					var message2 = ""
 					var lost_coins = 0
@@ -231,16 +228,18 @@ func _on_tile_pressed(pos: Vector2i, btn: Button):
 					_update_coin_pouch_label(coin_pouch)
 					_event_triggered(message, message2, 0)
 					current_tile.event_handled = true
-
 				else:
 					_event_triggered("The trap here has already been sprung.", "", 0)
 			"enemy":
-				if not current_tile.event_handled:
+				event_icon.texture = ENEMY_ICON
 
-					event_icon.texture = ENEMY_ICON
-					event_img.visible = true
+				event_img.visible = true
+				if not current_tile.event_handled:
 					var message = "You spot the remenants of a failed raiding parties camp,nearby looters wave knowing you're here doing the same, looting the dead."
 					var message2 = "While venturing along the edge of the camp, you spot a small chest that appears hastily buried.  You stuff it into your pack and hope the othr looters don't notice you."
+					var loot_created = LootGenerator.generate_loot(1,"enemy")
+					print(loot_created)
+					SaveManager.add_inventory(loot_created)
 					_event_triggered(message, message2, 0)
 	#				add item to pack
 					#combat isn't real combat, maybe roll to decide if you are able to steal their loot or they steal from you before you can get away from each other.
@@ -259,8 +258,10 @@ func _event_triggered(msg, submsg, flag):
 	sub_message_label.text = submsg
 	if flag == 0:
 		continue_button.visible = true
-	elif flag ==1:
+	elif flag == 1:
 		continue_button.visible = true
+		exit_button.visible = true
+	elif flag == 3:
 		exit_button.visible = true
 
 #Reset the event info
@@ -274,6 +275,7 @@ func _on_button_continue_pressed() -> void:
 
 func _on_button_exit_pressed() -> void:
 	print("Main Scene: User chose to exit the dungeon.")
+	SaveManager.player_left_dungeon()
 	SaveManager.add_coins(coin_pouch)
 	coin_pouch = 0
 	_update_coin_pouch_label(coin_pouch)

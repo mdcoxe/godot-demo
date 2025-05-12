@@ -1,6 +1,11 @@
+res://Scenes/game.tscn
+res://Scenes/main_menu.tscn
 res://Scenes/dungeon.tscn
 res://Scripts/dungeon.gd
-res://Scenes/main_menu.tscn
-res://Scenes/game.tscn
-res://Scenes/exit_dungeon_popup.tscn
+res://Scripts/LootGenerator.gd
+res://loot_data.json
+res://Scripts/save_manager.gd
+res://Scenes/storefront.tscn
+res://Scenes/store.tscn
+res://Scripts/game.gd
 res://Scripts/dungeon_event_popup.gd

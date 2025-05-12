@@ -38,7 +38,6 @@ func _ready():
 		button_leave.text = "Exit Dungeon"
 		stay_button_container.visible = true
 
-		
 func _on_button_leave_pressed() -> void:
 	print("Exiting dungeon")
 	exit_pressed.emit()

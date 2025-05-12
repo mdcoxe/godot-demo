@@ -43,7 +43,7 @@ theme_override_constants/margin_bottom = 24
 custom_minimum_size = Vector2(50, 200)
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
-text = "Congratulations, you found the exit.  You can leave the dungeon now with  your spoils or continue exploring and find more loot or risk loosing your loot"
+text = "You've run out of time in the dungeon, the next raiding party is only a few hours away.  You barter with a troll to wisk you back to the entrance in time to man the raid concession stand."
 autowrap_mode = 2
 
 [node name="PanelContainer2" type="PanelContainer" parent="ColorRect/VBoxContainer"]

@@ -1,8 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://dshcpg0nasn78"]
+[gd_scene load_steps=5 format=3 uid="uid://38vbes2fmn6i"]
 
-[ext_resource type="Script" uid="uid://beg80ajg6ujan" path="res://Scripts/game.gd" id="1_ebmjs"]
-[ext_resource type="Texture2D" uid="uid://ct0gia20kjrkw" path="res://assets/icons/239.png" id="2_wrm1d"]
-[ext_resource type="Texture2D" uid="uid://7y8ksyjnrs62" path="res://assets/icons/function_icon_list_2.png" id="3_3dryh"]
+[ext_resource type="Script" uid="uid://beg80ajg6ujan" path="res://Scripts/game.gd" id="1_2qqkl"]
+[ext_resource type="Texture2D" uid="uid://ct0gia20kjrkw" path="res://assets/icons/239.png" id="2_vwllq"]
+[ext_resource type="Texture2D" uid="uid://7y8ksyjnrs62" path="res://assets/icons/function_icon_list_2.png" id="3_ou0we"]
 
 [sub_resource type="Theme" id="Theme_ai7hp"]
 
@@ -13,7 +13,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_ebmjs")
+script = ExtResource("1_2qqkl")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -67,7 +67,7 @@ offset_left = -18.75
 offset_right = 18.75
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_wrm1d")
+texture = ExtResource("2_vwllq")
 expand_mode = 3
 
 [node name="title_container" type="MarginContainer" parent="MarginContainer/VBoxContainer/top_half/vboxcontainer/header_container/HBoxContainer"]
@@ -94,7 +94,7 @@ custom_minimum_size = Vector2(75, 75)
 layout_mode = 2
 theme = SubResource("Theme_ai7hp")
 theme_override_font_sizes/font_size = 24
-icon = ExtResource("3_3dryh")
+icon = ExtResource("3_ou0we")
 expand_icon = true
 
 [node name="top_half" type="VBoxContainer" parent="MarginContainer/VBoxContainer/top_half/vboxcontainer"]
@@ -102,7 +102,6 @@ layout_mode = 2
 size_flags_vertical = 3
 
 [node name="narrative_container" type="MarginContainer" parent="MarginContainer/VBoxContainer/top_half/vboxcontainer/top_half"]
-visible = false
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/margin_left = 24
@@ -117,7 +116,6 @@ theme_override_font_sizes/font_size = 24
 autowrap_mode = 2
 
 [node name="continue_btn_container" type="MarginContainer" parent="MarginContainer/VBoxContainer/top_half/vboxcontainer/top_half"]
-visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 24
 theme_override_constants/margin_top = 24

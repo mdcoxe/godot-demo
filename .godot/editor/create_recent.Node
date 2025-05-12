@@ -1,11 +1,11 @@
-ColorRect
-TextureRect
-CanvasLayer
 Button
-MarginContainer
-Label
-HBoxContainer
 VBoxContainer
+MarginContainer
+TextureRect
+Label
+ColorRect
+CanvasLayer
+HBoxContainer
 PanelContainer
 CenterContainer
 TextureButton

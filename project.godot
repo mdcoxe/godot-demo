@@ -18,6 +18,7 @@ config/icon="res://assets/icon.svg"
 [autoload]
 
 SaveManager="*res://Scripts/save_manager.gd"
+LootGenerator="*res://Scripts/LootGenerator.gd"
 
 [display]
 
